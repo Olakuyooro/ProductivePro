@@ -2,19 +2,23 @@ export interface AddTaskPayload {
   title: string;
   description: string;
   date: Date;
+  type: string;
 }
 
 export const AddTask = async (payload: AddTaskPayload) => {
   const accessToken = localStorage.getItem("accessToken");
   try {
-    const response = await fetch("https://backend-productive-pro-yedj.vercel.app/task", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${accessToken} `,
-      },
-      body: JSON.stringify(payload),
-    });
+    const response = await fetch(
+      "https://backend-productive-pro-yedj.vercel.app/task",
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${accessToken} `,
+        },
+        body: JSON.stringify(payload),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`Request failed with status ${response.status}`);
