@@ -93,7 +93,7 @@ export default function DetailBar() {
     try {
       const token = localStorage.getItem("accessToken");
       const response = await axios.put(
-        `http://backend-productive-pro-yedj.vercel.app/task/${id}`,
+        `https://backend-productive-pro-yedj.vercel.app/task/${id}`,
         updateData,
         {
           headers: {
