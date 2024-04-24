@@ -33,6 +33,7 @@ interface TaskDisplayProps {
 const UpcomingInnerTasks = () => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const [type, setType] = useState("");
   const [udescription, setUDescription] = useState<string>("");
   const [startDate, setStartDate] = useState(new Date());
   const [formState, setFormState] = useState(false);
@@ -77,7 +78,7 @@ const UpcomingInnerTasks = () => {
     e.preventDefault();
     queryClient.invalidateQueries({ queryKey: ["tasks"] });
     try {
-      createTask({ title: title, description: description, date: startDate });
+      createTask({ title: title, description: description, date: startDate, type:type });
       queryClient.invalidateQueries({ queryKey: ["upcomingTasks"] });
       setFormState(false);
     } catch (error) {
