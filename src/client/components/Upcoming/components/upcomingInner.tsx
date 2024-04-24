@@ -78,7 +78,12 @@ const UpcomingInnerTasks = () => {
     e.preventDefault();
     queryClient.invalidateQueries({ queryKey: ["tasks"] });
     try {
-      createTask({ title: title, description: description, date: startDate, type:type });
+      createTask({
+        title: title,
+        description: description,
+        date: startDate,
+        type: type,
+      });
       queryClient.invalidateQueries({ queryKey: ["upcomingTasks"] });
       setFormState(false);
     } catch (error) {
@@ -113,11 +118,14 @@ const UpcomingInnerTasks = () => {
   const handleDelete = async (id: string) => {
     try {
       const token = localStorage.getItem("accessToken");
-      const response = await axios.delete(`http://backend-productive-pro-yedj.vercel.app/task/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.delete(
+        `http://backend-productive-pro-yedj.vercel.app/task/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log("Deleted", response);
     } catch (err) {
       console.log(err);
@@ -126,11 +134,14 @@ const UpcomingInnerTasks = () => {
   const fetchTask = async (id: string) => {
     try {
       const token = localStorage.getItem("accessToken");
-      const response = await axios.get(`http://backend-productive-pro-yedj.vercel.app/task/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        `http://backend-productive-pro-yedj.vercel.app/task/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log("Dev", response.data.task);
       setTask(response.data.task);
       setDetailsTab(true);
@@ -139,9 +150,9 @@ const UpcomingInnerTasks = () => {
     }
   };
 
-  const handleDetailsClose = ()=>{
-    setDetailsTab(false)
-  }
+  const handleDetailsClose = () => {
+    setDetailsTab(false);
+  };
 
   return (
     <>
@@ -195,6 +206,18 @@ const UpcomingInnerTasks = () => {
                 onChange={(date) => date && setStartDate(date)}
               />
             </div>
+            <div className="flex flex-col space-y-2">
+              <label className="text-sm font-bold">Type</label>
+              <select
+                className="border border-solid w-[70%] p-1 rounded-md outline-none"
+                value={type}
+                onChange={(e) => setType(e.target.value)}
+              >
+                <option value="">Select Type</option>
+                <option value="personal">Personal</option>
+                <option value="work">Work</option>
+              </select>
+            </div>
             <button type="submit" className="bg-yellow-300 p-2 w-32 rounded-md">
               Add Task
             </button>
@@ -217,7 +240,11 @@ const UpcomingInnerTasks = () => {
       {detailsTab && (
         <section className="w-[40%] bg-gray-100 p-3">
           <div className="flex justify-between">
-            <h2 className="font-bold">Task Details</h2> <IoMdClose className="cursor-pointer" onClick={handleDetailsClose} />
+            <h2 className="font-bold">Task Details</h2>{" "}
+            <IoMdClose
+              className="cursor-pointer"
+              onClick={handleDetailsClose}
+            />
           </div>
 
           {Individualtask && (

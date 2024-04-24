@@ -29,6 +29,7 @@ interface Task {
 export default function TodayInner() {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const [type, setType] = useState("");
   const [udescription, setUDescription] = useState<string>("");
   const [startDate, setStartDate] = useState(new Date());
   const [formState, setFormState] = useState(false);
@@ -74,7 +75,7 @@ export default function TodayInner() {
     e.preventDefault();
     queryClient.invalidateQueries({ queryKey: ["tasks"] });
     try {
-      createTask({ title: title, description: description, date: startDate });
+      createTask({ title: title, description: description, date: startDate, type:type });
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       setFormState(false);
     } catch (error) {
@@ -212,6 +213,18 @@ export default function TodayInner() {
                 selected={startDate}
                 onChange={(date) => date && setStartDate(date)}
               />
+            </div>
+            <div className="flex flex-col space-y-2">
+              <label className="text-sm font-bold">Type</label>
+              <select
+                className="border border-solid w-[70%] p-1 rounded-md outline-none"
+                value={type}
+                onChange={(e)=>setType(e.target.value)}
+              >
+                <option value="">Select Type</option>
+                <option value="personal">Personal</option>
+                <option value="work">Work</option>
+              </select>
             </div>
             <button type="submit" className="bg-yellow-300 p-2 w-32 rounded-md">
               Add Task
