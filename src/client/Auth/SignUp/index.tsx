@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import signUpPic from "../../../../assets/signUpBg.png";
+import signUpPic from "../../../assets/signUpBg.png";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { signUp } from "@/src/helper/api/signup.api";
 import { getTasks } from "@/src/helper/api/getTask.api";
