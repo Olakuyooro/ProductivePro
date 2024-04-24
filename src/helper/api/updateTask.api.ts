@@ -6,7 +6,7 @@ export interface UpdateTaskPayload {
 export const UpdateTask = async (payload: UpdateTaskPayload, id: string) => {
   const accessToken = localStorage.getItem("accessToken");
   try {
-    const response = await fetch(`http://localhost:8080/task/${id}`, {
+    const response = await fetch(`https://backend-productive-pro-yedj.vercel.app/task/${id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",

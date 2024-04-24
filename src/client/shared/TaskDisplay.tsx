@@ -94,7 +94,7 @@ const TaskDisplay = ()=> {
     try {
       const token = localStorage.getItem("accessToken");
       const response = await axios.put(
-        `http://localhost:8080/task/${id}`,
+        `http://backend-productive-pro-yedj.vercel.app/task/${id}`,
         updateData,
         {
           headers: {
@@ -112,7 +112,7 @@ const TaskDisplay = ()=> {
   const handleDelete = async (id: string) => {
     try {
       const token = localStorage.getItem("accessToken");
-      const response = await axios.delete(`http://localhost:8080/task/${id}`, {
+      const response = await axios.delete(`http://backend-productive-pro-yedj.vercel.app/task/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -125,7 +125,7 @@ const TaskDisplay = ()=> {
   const fetchTask = async (id: string) => {
     try {
       const token = localStorage.getItem("accessToken");
-      const response = await axios.get(`http://localhost:8080/task/${id}`, {
+      const response = await axios.get(`http://backend-productive-pro-yedj.vercel.app/task/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

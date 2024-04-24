@@ -7,7 +7,7 @@ export interface AddTaskPayload {
 export const AddTask = async (payload: AddTaskPayload) => {
   const accessToken = localStorage.getItem("accessToken");
   try {
-    const response = await fetch("http://localhost:8080/task", {
+    const response = await fetch("https://backend-productive-pro-yedj.vercel.app/task", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

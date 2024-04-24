@@ -91,7 +91,7 @@ export default function TodayInner() {
     try {
       const token = localStorage.getItem("accessToken");
       const response = await axios.put(
-        `http://localhost:8080/task/${id}`,
+        `http://backend-productive-pro-yedj.vercel.app/task/${id}`,
         updateData,
         {
           headers: {
@@ -110,7 +110,7 @@ export default function TodayInner() {
     try {
       const token = localStorage.getItem("accessToken");
       const response = await axios.delete(
-        `http://localhost:8080/task/${id}`,
+        `http://backend-productive-pro-yedj.vercel.app/task/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -125,7 +125,7 @@ export default function TodayInner() {
   const fetchTask = async (id: string) => {
     try {
       const token = localStorage.getItem("accessToken");
-      const response = await axios.get(`http://localhost:8080/task/${id}`, {
+      const response = await axios.get(`http://backend-productive-pro-yedj.vercel.app/task/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -142,7 +142,7 @@ export default function TodayInner() {
     const accessToken = localStorage.getItem('accessToken');
     console.log(accessToken)
     try {
-      const response = await fetch("http://localhost:8080/profile", {
+      const response = await fetch("http://backend-productive-pro-yedj.vercel.app/profile", {
         method: "GET",
         headers: { 
           "Content-type": "application/json",

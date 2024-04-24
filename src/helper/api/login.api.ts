@@ -7,7 +7,7 @@ export interface LoginPayload {
 
 export const login = async (payload: LoginPayload) => {
   try {
-    const response = await fetch("http://localhost:8080/auth/login", {
+    const response = await fetch("https://backend-productive-pro-yedj.vercel.app/auth/login", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(payload),

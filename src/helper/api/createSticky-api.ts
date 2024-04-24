@@ -7,7 +7,7 @@ export interface AddStickyPayload {
 export const AddSticky = async (payload: AddStickyPayload) => {
   const accessToken = localStorage.getItem("accessToken");
   try {
-    const response = await fetch("http://localhost:8080/create-stickywall", {
+    const response = await fetch("https://backend-productive-pro-yedj.vercel.app/create-stickywall", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
