@@ -100,7 +100,7 @@ const UpcomingInnerTasks = () => {
     try {
       const token = localStorage.getItem("accessToken");
       const response = await axios.put(
-        `http://backend-productive-pro-yedj.vercel.app/task/${id}`,
+        `https://backend-productive-pro-yedj.vercel.app/task/${id}`,
         updateData,
         {
           headers: {
@@ -119,7 +119,7 @@ const UpcomingInnerTasks = () => {
     try {
       const token = localStorage.getItem("accessToken");
       const response = await axios.delete(
-        `http://backend-productive-pro-yedj.vercel.app/task/${id}`,
+        `https://backend-productive-pro-yedj.vercel.app/task/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -135,7 +135,7 @@ const UpcomingInnerTasks = () => {
     try {
       const token = localStorage.getItem("accessToken");
       const response = await axios.get(
-        `http://backend-productive-pro-yedj.vercel.app/task/${id}`,
+        `https://backend-productive-pro-yedj.vercel.app/task/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
