@@ -47,7 +47,7 @@ const SideBar = () => {
             href="/"
             title="Today"
             icon={<FaListCheck className=" opacity-50" />}
-            frequency={0}
+            frequency={todayTasks?.length}
           />
           <ReuseList
             href=""
