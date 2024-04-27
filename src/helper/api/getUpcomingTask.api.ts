@@ -3,7 +3,6 @@ export const getUpcomingTasks = async () => {
     try {
       const response = await fetch("https://backend-productive-pro-yedj.vercel.app/upcomingtasks", {
         method: "GET",
-        mode:"no-cors",
         headers: { 
           "Content-type": "application/json",
           "Authorization": `Bearer ${accessToken}`

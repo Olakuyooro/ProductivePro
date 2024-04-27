@@ -4,7 +4,6 @@ export const getTasks = async () => {
   try {
     const response = await fetch("https://backend-productive-pro-yedj.vercel.app/tasks", {
       method: "GET",
-      mode:"no-cors",
       headers: { 
         "Content-type": "application/json",
         "Authorization": `Bearer ${accessToken}`
