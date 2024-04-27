@@ -6,7 +6,7 @@ export interface RegisterUserPayload {
 
 export const signUp = async (payload: RegisterUserPayload) => {
   try {
-    const response = await fetch("https://backend-productive-pro-yedj.vercel.app/auth/signup", {
+    const response = await fetch("https://backend-productivepro-1.onrender.com/auth/signup", {
       method: "PUT",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(payload),

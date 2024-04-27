@@ -2,7 +2,7 @@ export const getTasks = async () => {
   const accessToken = localStorage.getItem('accessToken');
 
   try {
-    const response = await fetch("https://backend-productive-pro-yedj.vercel.app/tasks", {
+    const response = await fetch("https://backend-productivepro-1.onrender.com/tasks", {
       method: "GET",
       headers: { 
         "Content-type": "application/json",

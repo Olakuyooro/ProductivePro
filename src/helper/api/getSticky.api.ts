@@ -2,7 +2,7 @@ export const getSticky = async () => {
     const accessToken = localStorage.getItem('accessToken');
   
     try {
-      const response = await fetch("https://backend-productive-pro-yedj.vercel.app/stickywall", {
+      const response = await fetch("https://backend-productivepro-1.onrender.com/stickywall", {
         method: "GET",
         headers: { 
           "Content-type": "application/json",
