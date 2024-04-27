@@ -9,6 +9,7 @@ export const login = async (payload: LoginPayload) => {
   try {
     const response = await fetch("https://backend-productive-pro-yedj.vercel.app/auth/login", {
       method: "POST",
+      mode:"no-cors",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(payload),
     });
