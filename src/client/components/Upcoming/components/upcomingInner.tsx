@@ -76,7 +76,6 @@ const UpcomingInnerTasks = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    queryClient.invalidateQueries({ queryKey: ["tasks"] });
     try {
       createTask({
         title: title,
@@ -89,6 +88,7 @@ const UpcomingInnerTasks = () => {
     } catch (error) {
       console.log(error);
     }
+    queryClient.invalidateQueries({ queryKey: ["tasks"] });
   };
 
   const handleUpdate = async (id: string) => {
@@ -119,7 +119,7 @@ const UpcomingInnerTasks = () => {
     try {
       const token = localStorage.getItem("accessToken");
       const response = await axios.delete(
-        `https://-productive-pro-yedj.vercel.app/task/${id}`,
+        `https://backend-productivepro-1.onrender.com/task/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -2,7 +2,11 @@ import { AddSticky } from "@/src/helper/api/createSticky-api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ChangeEvent, useState } from "react";
 
-const StickyForm = () => {
+interface StickyFormProps{
+  closeModal: ()=>void
+}
+
+const StickyForm: React.FC<StickyFormProps> = ({closeModal}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [customType, setCustomType] = useState("");
@@ -32,10 +36,12 @@ const StickyForm = () => {
         description: description,
         type: customType,
       });
-      queryClient.invalidateQueries({ queryKey: ["sticky"] });
+      
     } catch (error) {
       console.log(error, "from Sticky");
     }
+    queryClient.invalidateQueries({ queryKey: ["sticky"] });
+    closeModal()
   };
 
   return (

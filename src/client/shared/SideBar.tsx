@@ -50,7 +50,7 @@ const SideBar = () => {
             frequency={todayTasks?.length}
           />
           <ReuseList
-            href=""
+            href="/calendar"
             title="Calendar"
             icon={<FaRegCalendarDays className=" opacity-50" />}
           />
