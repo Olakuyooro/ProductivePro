@@ -8,7 +8,6 @@ interface ModalProps {
 
 const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
   const handleCloseModal = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    // Check if the click event originated from the backdrop
     if (e.target === e.currentTarget) {
       onClose();
     }

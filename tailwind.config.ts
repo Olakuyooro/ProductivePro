@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import type { ThemeConfig } from 'antd';
 
 const config: Config = {
   content: [

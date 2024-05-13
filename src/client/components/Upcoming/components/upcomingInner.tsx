@@ -88,7 +88,7 @@ const UpcomingInnerTasks = () => {
     } catch (error) {
       console.log(error);
     }
-    queryClient.invalidateQueries({ queryKey: ["tasks"] });
+    queryClient.invalidateQueries({ queryKey: ["upComingTasks"] });
   };
 
   const handleUpdate = async (id: string) => {
