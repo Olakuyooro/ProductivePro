@@ -23,6 +23,9 @@ const SideBar = () => {
   const { isLoading, isError, tasks, error } = useTasks();
   const { isLoading: loading, isError: iError, todayTasks, error: Error } = useTodayTasks();
 
+  const personalTask = tasks?.filter((task)=>(task.type === "personal"))
+  const workTask = tasks?.filter((task)=>(task.type === "work"))
+
   return (
     <div className="w-64 h-full bg-gray-100 rounded-md p-3">
       <section className="flex justify-between">
@@ -65,26 +68,16 @@ const SideBar = () => {
         <h6 className="text-xs font-bold opacity-85 mb-4">LISTS</h6>
         <div className="flex flex-col space-y-3">
           <ReuseList
-            href=""
+            href="/personal"
             title="Personal"
             icon={<div className="w-4 h-4 rounded-sm bg-red-300"></div>}
-            frequency={12}
+            frequency={personalTask?.length}
           />
           <ReuseList
-            href=""
+            href="/work"
             title="Work"
             icon={<div className="w-4 h-4 rounded-sm bg-blue-300"></div>}
-            frequency={5}
-          />
-          <ReuseList
-            href=""
-            title="List 1"
-            icon={<div className="w-4 h-4 rounded-sm bg-yellow-300"></div>}
-          />
-          <ReuseList
-            href=""
-            title="Add List"
-            icon={<IoIosAdd className=" opacity-50" />}
+            frequency={workTask?.length}
           />
         </div>
       </section>

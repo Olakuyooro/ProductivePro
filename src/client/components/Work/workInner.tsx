@@ -5,7 +5,7 @@ import { IoIosAdd, IoMdClose } from "react-icons/io";
 import { getTasks } from "@/src/helper/api/getTask.api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AddTask } from "@/src/helper/api/addTask.api";
-import TaskLayout from "../../../shared/TaskLayout";
+import TaskLayout from "../../shared/TaskLayout";
 import { getIndividualTask } from "@/src/helper/api/getIndividualTask.api";
 import axios from "axios";
 import { UpdateTask } from "@/src/helper/api/updateTask.api";
@@ -31,7 +31,7 @@ interface TaskDisplayProps {
   day: string;
 }
 
-const UpcomingInnerTasks = () => {
+const WorkTasks = () => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [type, setType] = useState("");
@@ -52,6 +52,8 @@ const UpcomingInnerTasks = () => {
     queryKey: ["upcomingTasks"],
     queryFn: getUpcomingTasks,
   });
+
+  const workTask = tasks?.filter((task:any)=>(task.type === "work"))
 
   const { mutate: createTask } = useMutation({
     mutationFn: AddTask,
@@ -159,9 +161,9 @@ const UpcomingInnerTasks = () => {
     <>
       <section className=" w-full">
         <div className="flex space-x-4">
-          <h2 className="text-3xl font-bold">Upcoming</h2>
+          <h2 className="text-3xl font-bold">Work</h2>
           <p className=" border border-solid text-lg text-center font-bold p-1 w-10 rounded-md">
-            {tasks.length}
+            {workTask.length}
           </p>
         </div>
         <div
@@ -226,7 +228,7 @@ const UpcomingInnerTasks = () => {
         )}
         <div>
           {tasks &&
-            tasks?.map((task: Task, index: any) => (
+            workTask?.map((task: Task, index: any) => (
               <div onClick={() => fetchTask(task._id)} key={index}>
                 <TaskLayout
                   customkey={index}
@@ -288,4 +290,4 @@ const UpcomingInnerTasks = () => {
   );
 };
 
-export default UpcomingInnerTasks;
+export default WorkTasks;

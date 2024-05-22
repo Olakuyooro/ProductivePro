@@ -6,6 +6,7 @@ interface Task{
     title: string;
     description: string;
     date: Date;
+    type:string;
 }
 
 interface TaskProviderProps{

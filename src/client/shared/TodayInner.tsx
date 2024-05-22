@@ -24,9 +24,11 @@ interface Task {
   title: string;
   description: string;
   date: string;
+  type:string
 }
 
 export default function TodayInner() {
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [type, setType] = useState("");
@@ -64,8 +66,6 @@ export default function TodayInner() {
   if (isError) {
     return <span>Error: </span>;
   }
-
-  console.log(tasks);
 
   const handleFormState = () => {
     setFormState(!formState);
@@ -123,6 +123,7 @@ export default function TodayInner() {
       console.log(err);
     }
   };
+
   const fetchTask = async (id: string) => {
     try {
       const token = localStorage.getItem("accessToken");
@@ -160,91 +161,100 @@ export default function TodayInner() {
       
     }
   };
-  
+
+  const filteredTasks = tasks.filter((task: Task) =>
+    task.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
-      <section className=" w-full">
-        <div className="flex space-x-4">
-          <h2 className="text-3xl font-bold">Today</h2>
-          <button onClick={getProfile} className="bg-blue-400 w-32 p-1 text-white">Get profile</button>
-          <p className=" border border-solid text-lg text-center font-bold p-1 w-10 rounded-md">
-            {tasks.length}
-          </p>
-        </div>
-        <div
-          onClick={handleFormState}
-          className="flex space-x-1 border border-solid p-2 rounded-md mt-8 w-full"
+    <section className="w-full">
+      <div className="flex space-x-4">
+        <h2 className="text-3xl font-bold">Tday</h2>
+        <input
+        className="w-44 h-72 bg-gray-400"
+        type="text"
+        placeholder="Search..."
+        value={searchQuery}
+        onChange={e=>setSearchQuery(e.target.value)}
+      />
+        <button onClick={getProfile} className="bg-blue-400 w-32 p-1 text-white">Get profile</button>
+        <p className="border border-solid text-lg text-center font-bold p-1 w-10 rounded-md">
+          {tasks.length}
+        </p>
+      </div>
+      <div
+        onClick={handleFormState}
+        className="flex space-x-1 border border-solid p-2 rounded-md mt-8 w-full"
+      >
+        <IoIosAdd className="opacity-50" />
+        <p className="text-sm font-bold opacity-50">Add New Task</p>
+      </div>
+      {formState && (
+        <form
+          onSubmit={handleSubmit}
+          className="mt-4 flex flex-col space-y-4"
         >
-          <IoIosAdd className=" opacity-50" />
-          <p className="text-sm font-bold opacity-50">Add New Task</p>
-        </div>
-        {formState && (
-          <form
-            onSubmit={handleSubmit}
-            className="mt-4 flex flex-col space-y-4"
-          >
-            <div className="space-y-1 flex flex-col">
-              <label className="text-sm font-bold">Title</label>
-              <input
-                type="text"
-                name="title"
-                id="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="border border-solid w-[40%] p-2 rounded-md"
-              />
-            </div>
-            <div className="space-y-1 flex flex-col">
-              <label className="text-sm font-bold">Description</label>
-              <textarea
-                name="description"
-                id="description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="border border-solid w-[40%] p-2 rounded-md"
-              />
-            </div>
-            <div className="flex flex-col space-y-1 w-[50%]">
-              <label className="text-sm font-bold">Date</label>
-              <DatePicker
-                showIcon
-                className="border border-solid p-2 text-sm"
-                dateFormat="yyyy/MM/dd"
-                selected={startDate}
-                onChange={(date) => date && setStartDate(date)}
-              />
-            </div>
-            <div className="flex flex-col space-y-2">
-              <label className="text-sm font-bold">Type</label>
-              <select
-                className="border border-solid w-[70%] p-1 rounded-md outline-none"
-                value={type}
-                onChange={(e)=>setType(e.target.value)}
-              >
-                <option value="">Select Type</option>
-                <option value="personal">Personal</option>
-                <option value="work">Work</option>
-              </select>
-            </div>
-            <button type="submit" className="bg-yellow-300 p-2 w-32 rounded-md">
-              Add Task
-            </button>
-          </form>
-        )}
-        <div>
-          {tasks &&
-            tasks?.map((task: Task, index: any) => (
-              <div onClick={() => fetchTask(task._id)} key={index}>
-                <TaskLayout
-                  customkey={index}
-                  title={task.title}
-                  description={task.description}
-                  date={task.date}
-                />
-              </div>
-            ))}
-        </div>
-      </section>
-   
+          <div className="space-y-1 flex flex-col">
+            <label className="text-sm font-bold">Title</label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="border border-solid w-[40%] p-2 rounded-md"
+            />
+          </div>
+          <div className="space-y-1 flex flex-col">
+            <label className="text-sm font-bold">Description</label>
+            <textarea
+              name="description"
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="border border-solid w-[40%] p-2 rounded-md"
+            />
+          </div>
+          <div className="flex flex-col space-y-1 w-[50%]">
+            <label className="text-sm font-bold">Date</label>
+            <DatePicker
+              showIcon
+              className="border border-solid p-2 text-sm"
+              dateFormat="yyyy/MM/dd"
+              selected={startDate}
+              onChange={(date) => date && setStartDate(date)}
+            />
+          </div>
+          <div className="flex flex-col space-y-2">
+            <label className="text-sm font-bold">Type</label>
+            <select
+              className="border border-solid w-[70%] p-1 rounded-md outline-none"
+              value={type}
+              onChange={(e)=>setType(e.target.value)}
+            >
+              <option value="">Select Type</option>
+              <option value="personal">Personal</option>
+              <option value="work">Work</option>
+            </select>
+          </div>
+          <button type="submit" className="bg-yellow-300 p-2 w-32 rounded-md">
+            Add Task
+          </button>
+        </form>
+      )}
+      <div>
+        {filteredTasks.map((task: Task, index: any) => (
+          <div onClick={() => fetchTask(task._id)} key={index}>
+            <TaskLayout
+              customkey={index}
+              title={task.title}
+              description={task.description}
+              date={task.date}
+              type={task.type}
+            />
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }

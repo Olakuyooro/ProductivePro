@@ -6,6 +6,7 @@ interface TaskLayoutProps {
   description: string;
   date: string;
   customkey: number;
+  type: string;
 }
 
 const TaskLayout: React.FC<TaskLayoutProps> = ({
@@ -13,6 +14,7 @@ const TaskLayout: React.FC<TaskLayoutProps> = ({
   description,
   date,
   customkey,
+  type,
 }) => {
   const formatDate = (isoDate: string) => {
     const date = new Date(isoDate);
@@ -26,13 +28,24 @@ const TaskLayout: React.FC<TaskLayoutProps> = ({
 
   return (
     <div
-    key={customkey}
+      key={customkey}
       onClick={handleDescription}
       className="border-[0.1rem]  border-solid p-2 flex justify-between"
     >
       <div className="space-y-4">
         <p className="text-sm font-semibold">{title}</p>
-        {expandDescription && <p className="text-sm">{description}</p>}
+        {expandDescription && (
+          <div className="flex space-x-3">
+            <p className="text-sm">{description}</p>
+            <div
+              className={
+                type === "personal"
+                  ? "bg-red-200 p-1 rounded-sm w-4 h-4"
+                  : "bg-blue-200 p-1 rounded-sm w-4 h-4"
+              }
+            ></div>
+          </div>
+        )}
         <p className="text-sm font-bold opacity-80 ">{formatDate(date)}</p>
       </div>
       <div>{expandDescription ? <IoIosArrowUp /> : <IoIosArrowDown />}</div>
