@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter()
+  const router = useRouter();
 
   const { mutate: LogInUser } = useMutation({
     mutationFn: login,
@@ -25,31 +25,45 @@ export default function Login() {
     try {
       LogInUser({ email: email, password: password });
       // router.push('/')
+      console
     } catch (error) {
       console.log("Na Beans you dey cook. Lmao");
     }
   };
 
   return (
-    <div className="flex w-full bg-gray-100 h-screen justify-center p-3 shadow-2xl">
-      <div className="bg-black rounded-md rounded-tr-none rounded-br-none p-2 w-[37%]">
+    <div className="flex flex-col md:flex-row w-full bg-gray-100 h-screen justify-center p-3 shadow-2xl">
+      <div className="bg-black rounded-md rounded-tr-none rounded-br-none p-2 md:w-[37%]">
         <Image src={signUpPic} alt="sign-up" />
       </div>
-      <div className="bg-white rounded-md p-2 rounded-tl-none rounded-bl-none w-[37%] flex flex-col space-y-4 justify-center pl-12">
-        <p className="text-2xl font-bold text-left">Sign In</p>
-        <form onSubmit={handleSubmit} className="space-y-3">
-          <input
-            className="w-96 p-2 border-solid border rounded-md"
-            type="email"
-            placeholder="example@email.com"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            className="w-96 p-2 border-solid border rounded-md"
-            type="text"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type="submit" className="text-center text-xs font-semibold bg-yellow-400 w-96 rounded-md p-2">
+      <div className="bg-white rounded-md p-4 pb-24 rounded-tl-none rounded-bl-none md:w-[37%] flex flex-col space-y-4 justify-center md:pl-12">
+        <p className="text-2xl font-bold text-left mb-8">Sign In</p>
+        <form onSubmit={handleSubmit} className=" space-y-5 md:space-y-3 flex flex-col">
+          <div className="flex flex-col space-y-1">
+            <label className=" text-sm font-semibold">E-mail</label>
+            <input
+              className=" md:w-[95%] p-2 border-solid border rounded-md focus:outline focus:outline-[0.1rem]"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="example@email.com"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="flex flex-col space-y-1">
+            <label className="text-sm font-semibold">Password</label>
+            <input
+              className=" md:w-[95%] p-2 border-solid border rounded-md focus:outline focus:outline-[0.1rem]"
+              type="password"
+              name="password"
+              id="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button
+            type="submit"
+            className=" md:w-[95%] text-center text-xs font-semibold bg-yellow-400 rounded-md p-2"
+          >
             Sign In
           </button>
         </form>

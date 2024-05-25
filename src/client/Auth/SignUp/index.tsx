@@ -30,21 +30,21 @@ const SignUp = () => {
   };
 
   return (
-    <div className=" flex w-full bg-gray-100 h-screen justify-center p-3 shadow-2xl">
-      <div className=" bg-black rounded-md rounded-tr-none rounded-br-none p-2 w-[37%]">
+    <div className=" flex flex-col md:flex-row w-full bg-gray-300 h-screen md:justify-center p-3 shadow-2xl">
+      <div className=" bg-black rounded-md rounded-bl-none md:rounded-bl-md md:rounded-tr-none rounded-br-none p-2 md:w-[37%]">
         <Image src={signUpPic} alt="sign-up" />
       </div>
-      <div className="bg-white rounded-md p-2 rounded-tl-none rounded-bl-none w-[37%] flex flex-col space-y-4 justify-center items-center">
+      <div className="bg-white rounded-md p-6 md:p-2 rounded-tr-none md:rounded-tr-md  md:rounded-br-md rounded-tl-none md:rounded-bl-none md:w-[37%] flex flex-col space-y-4 justify-center items-center">
         <p className="text-2xl font-bold">ProductivePro</p>
-        <p className="text-xs font-semibold opacity-80 w-96">
+        <p className="text-xs font-semibold opacity-80 text-center">
           ProductivePro: Your ultimate productivity companion. Streamline tasks,
           set deadlines, and conquer your to-do list with ease.
         </p>
-        <form onSubmit={handleSubmit} className="my-4 flex flex-col space-y-4">
+        <form onSubmit={handleSubmit} className="w-full md:pl-4 my-4 flex flex-col space-y-4">
           <div className="flex flex-col space-y-1">
             <label className="text-sm font-semibold">Username</label>
             <input
-              className="w-96 p-2 border-solid border rounded-md focus:outline focus:outline-[0.1rem]"
+              className=" md:w-[95%] p-2 border-solid border rounded-md focus:outline focus:outline-[0.1rem]"
               type="text"
               name="name"
               id="name"
@@ -53,9 +53,9 @@ const SignUp = () => {
             />
           </div>
           <div className="flex flex-col space-y-1">
-            <label className="text-sm font-semibold">E-mail</label>
+            <label className=" text-sm font-semibold">E-mail</label>
             <input
-              className="w-96 p-2 border-solid border rounded-md focus:outline focus:outline-[0.1rem]"
+              className=" md:w-[95%] p-2 border-solid border rounded-md focus:outline focus:outline-[0.1rem]"
               type="email"
               name="email"
               id="email"
@@ -66,16 +66,16 @@ const SignUp = () => {
           <div className="flex flex-col space-y-1">
             <label className="text-sm font-semibold">Password</label>
             <input
-              className="w-96 p-2 border-solid border rounded-md focus:outline focus:outline-[0.1rem]"
+              className=" md:w-[95%] p-2 border-solid border rounded-md focus:outline focus:outline-[0.1rem]"
               type="text"
               name="password"
               id="password"
               onChange={(e) => setPassword(e.target.value)}
             />
-          </div>{" "}
+          </div>
           <button
             type="submit"
-            className="text-center text-xs font-semibold bg-yellow-400 w-96 rounded-md p-2"
+            className="text-center text-xs font-semibold bg-yellow-400  rounded-md p-2"
           >
             Get Started
           </button>

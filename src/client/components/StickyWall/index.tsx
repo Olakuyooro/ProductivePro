@@ -49,7 +49,7 @@ const StickyWall = () => {
     <GeneralLayout>
       <div className="flex flex-col">
         <h2 className="text-2xl font-bold mb-6">Sticky Wall</h2>
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
           {stickyWall?.map((sticky: any, index: any) => (
             <div
               key={index}

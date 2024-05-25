@@ -47,7 +47,7 @@ const StickyForm: React.FC<StickyFormProps> = ({closeModal}) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white rounded-md p-5 w-[30rem] space-y-3"
+      className="bg-white rounded-md p-2 md:p-5 md:w-[30rem] space-y-3"
     >
       <div className="flex flex-col space-y-2">
         <label className="text-sm font-bold">Title</label>

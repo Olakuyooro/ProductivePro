@@ -12,6 +12,7 @@ import axios from "axios";
 import { UpdateTask } from "@/src/helper/api/updateTask.api";
 import GeneralLayout from "../../shared/GeneralLayout";
 import TaskDisplay from "../../shared/TaskDisplay";
+import TodayInnerTasks from "../../shared/TaskDisplay";
 
 interface TaskDetails {
   _id: string;
@@ -32,7 +33,7 @@ export default function LandingPage() {
  
   return (
     <GeneralLayout>
-    <TaskDisplay/>
+    <TodayInnerTasks/>
     </GeneralLayout>
   );
 }

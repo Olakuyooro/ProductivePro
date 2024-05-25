@@ -27,16 +27,16 @@ const SideBar = () => {
   const workTask = tasks?.filter((task)=>(task.type === "work"))
 
   return (
-    <div className="w-64 h-full bg-gray-100 rounded-md p-3">
+    <div className="w-64 md:pb-36 bg-gray-100 rounded-md p-3">
       <section className="flex justify-between">
-        <h3 className="text-base font-bold">Menu</h3>
-        <MdMenu className="text-xl" />
+        {/* <h3 className="text-base font-bold">Menu</h3>
+        <MdMenu className="text-xl" /> */}
       </section>
-      <input
+      {/* <input
         type="text"
         placeholder="search"
         className="bg-gray-100 w-56 mt-2 border border-solid p-1 rounded-md text-xs font-bold outline-none"
-      />
+      /> */}
       <section className="mt-6">
         <h6 className="text-xs font-bold opacity-85 mb-4">TASKS</h6>
         <div className="flex flex-col space-y-3">
@@ -82,11 +82,11 @@ const SideBar = () => {
         </div>
       </section>
       <div className="mt-32 flex flex-col space-y-4">
-        <ReuseList
+        {/* <ReuseList
           href=""
           title="Settings"
           icon={<CiSettings className=" opacity-50" />}
-        />
+        /> */}
         <ReuseList
           href=""
           onClick={logout}
