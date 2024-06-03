@@ -4,6 +4,7 @@ import signUpPic from "../../../assets/signUpBg.png";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { signUp } from "@/src/helper/api/signup.api";
 import { getTasks } from "@/src/helper/api/getTask.api";
+import Link from "next/link";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -40,7 +41,10 @@ const SignUp = () => {
           ProductivePro: Your ultimate productivity companion. Streamline tasks,
           set deadlines, and conquer your to-do list with ease.
         </p>
-        <form onSubmit={handleSubmit} className="w-full md:pl-4 my-4 flex flex-col space-y-4">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full md:pl-4 my-4 flex flex-col space-y-4"
+        >
           <div className="flex flex-col space-y-1">
             <label className="text-sm font-semibold">Username</label>
             <input
@@ -81,8 +85,11 @@ const SignUp = () => {
           </button>
         </form>
 
-        <p className="text-xs font-semibold opacity-80 text-center">
-          Already have an account? Sign in
+        <p className="text-xs  text-center">
+          Already have an account?
+          <Link href="/login" className="font-bold">
+            Sign in
+          </Link>
         </p>
       </div>
     </div>
