@@ -5,11 +5,13 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { signUp } from "@/src/helper/api/signup.api";
 import { getTasks } from "@/src/helper/api/getTask.api";
 import Link from "next/link";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const { mutate: createUser } = useMutation({
     mutationFn: signUp,
@@ -31,7 +33,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className=" flex flex-col md:flex-row w-full bg-gray-300 h-screen md:justify-center p-3 shadow-2xl">
+    <div className=" flex flex-col md:flex-row w-full bg-gray-100 h-screen md:justify-center p-3 shadow-2xl">
       <div className=" bg-black rounded-md rounded-bl-none md:rounded-bl-md md:rounded-tr-none rounded-br-none p-2 md:w-[37%]">
         <Image src={signUpPic} alt="sign-up" />
       </div>
@@ -67,15 +69,22 @@ const SignUp = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="flex flex-col space-y-1">
+          <div className="flex flex-col space-y-1 relative">
             <label className="text-sm font-semibold">Password</label>
             <input
-              className=" md:w-[95%] p-2 border-solid border rounded-md focus:outline focus:outline-[0.1rem]"
-              type="text"
+              className="md:w-[95%] p-2 border-solid border rounded-md focus:outline focus:outline-[0.1rem]"
+              type={showPassword ? "text" : "password"}
               name="password"
               id="password"
               onChange={(e) => setPassword(e.target.value)}
             />
+                        <button
+              type="button"
+              className="absolute right-10 top-10 transform -translate-y-1/2"
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
           </div>
           <button
             type="submit"

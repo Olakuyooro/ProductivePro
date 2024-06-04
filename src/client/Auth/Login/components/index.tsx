@@ -5,13 +5,12 @@ import { useMutation } from "@tanstack/react-query";
 import { login } from "@/src/helper/api/login.api";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import icons
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
-  const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
 
   const { mutate: LogInUser } = useMutation({
     mutationFn: login,
@@ -27,7 +26,6 @@ export default function Login() {
     e.preventDefault();
     try {
       LogInUser({ email: email, password: password });
-      // router.push('/')
       console
     } catch (error) {
       console.log("Na Beans you dey cook. Lmao");
