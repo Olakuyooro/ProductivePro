@@ -5,6 +5,8 @@ import { Poppins } from "next/font/google";
 import { MdMenu } from "react-icons/md";
 import Modal from "./modal/Modal";
 import SideBarModal from "./modal/SideBarModal";
+import { useQuery } from "@tanstack/react-query";
+import { getProfile } from "@/src/helper/api/getProfile.api";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -29,6 +31,16 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({ children }) => {
     setModalOpen(false);
   };
 
+  const {
+    isLoading,
+    isError,
+    data: username,
+  } = useQuery({
+    queryKey: ["profile"],
+    queryFn: getProfile,
+  });
+
+
   return (
     <div
       className={`p-5 w-full h-screen flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-9 ${poppins.className}`}
@@ -42,6 +54,7 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({ children }) => {
           className={`${sideBarState == false ? "hidden" : "block"} md:block`}
         >
           <div className="hidden md:block">
+           <p className="text-sm mb-2">{username}</p> 
             <SideBar />
           </div>
           <SideBarModal onClose={closeModal} isOpen={modalOpen}>

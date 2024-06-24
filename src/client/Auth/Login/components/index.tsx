@@ -70,7 +70,7 @@ export default function Login() {
           </div>
           <button
             type="submit"
-            className="md:w-[95%] text-center text-xs font-semibold bg-yellow-400 rounded-md p-2"
+            className="md:w-[95%] text-center text-xs font-semibold bg-yellow-400 hover:opacity-70 rounded-md p-2"
           >
             Sign In
           </button>

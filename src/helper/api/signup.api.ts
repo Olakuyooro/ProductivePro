@@ -12,15 +12,17 @@ export const signUp = async (payload: RegisterUserPayload) => {
       body: JSON.stringify(payload),
     });
 
-    if (!response.ok) {
-      throw new Error(`Request failed with status ${response.status}`);
-    }
-
     const data = await response.json();
+
+    if (!response.ok) {
+      const errorMessage = data.data?.[0]?.msg || data.message || `Request failed with status ${response.status}`;
+      throw new Error(errorMessage);
+    }
+    localStorage.setItem("accessToken", data.token);
     data.statusCode = response.status;
     return data;
-  } catch (error) {
+  } catch (error: any) {
     console.error("An error occurred during the API request:", error);
-    return { statusCode: 500, error: "Internal Server Error" };
+    throw new Error(error.message || "Internal Server Error");
   }
 };
